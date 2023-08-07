@@ -4869,6 +4869,9 @@ sub write_file_table(*$$$$$$$)
         my @columns;
         ($found, $hit, $fn_found, $fn_hit, $br_found, $br_hit,
          $page_link) = @{$overview->{$filename}};
+        if ($hit == 0) {
+            next;
+        }
 
         # Line coverage
         push(@columns, [$found, $hit, $med_limit, $hi_limit, 1]);
