@@ -1177,7 +1177,9 @@ sub process_dir($)
             ($lines_found, $lines_hit, $fn_found, $fn_hit, $br_found,
              $br_hit, $testdata, $testfncdata, $testbrdata) =
                 process_file($trunc_dir, $rel_dir, $filename);
-
+            if ($lines_hit == 0) {
+               next;
+            }
             $base_name = basename($filename);
 
             if ($no_sourceview) {
