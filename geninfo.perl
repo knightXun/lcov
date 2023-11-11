@@ -66,7 +66,7 @@ if( $^O eq "msys" )
 our $lcov_version    = 'LCOV version 1.11';
 our $lcov_url        = "http://ltp.sourceforge.net/coverage/lcov.php";
 # @todo Needs to be changed
-our $gcov_tool        = "c:\\PATH_to\\gcov.exe";
+our $gcov_tool        = "/usr/bin/gcov";
 our $tool_name        = basename($0);
 
 our $GCOV_VERSION_4_7_0    = 0x40700;
