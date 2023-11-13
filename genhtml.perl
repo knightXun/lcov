@@ -4130,16 +4130,31 @@ sub format_count($$)
     my $result;
     my $exp;
 
-    $result = sprintf("%*.0f", $width, $count);
+    $result = sprintf("%*.0f       ", $width, $count);
     while (length($result) > $width) {
         last if ($count < 10);
         $exp++;
         $count = int($count/10);
-        $result = sprintf("%*s", $width, ">$count*10^$exp");
+        $result = sprintf("%*s       ", $width, ">$count*10^$exp");
     }
     return $result;
 }
 
+sub format_count_label($$)
+{
+    my ($count, $width) = @_;
+    my $result;
+    my $exp;
+
+    $result = sprintf("%*.0f hitted", $width, $count);
+    while (length($result) > $width) {
+        last if ($count < 10);
+        $exp++;
+        $count = int($count/10);
+        $result = sprintf("%*s hitted", $width, ">$count*10^$exp");
+    }
+    return $result;
+}
 #
 # write_source_line(filehandle, line_num, source, hit_count, converted,
 #                   brdata, add_anchor)
@@ -4177,12 +4192,12 @@ sub write_source_line(*$$$$$$)
     elsif ($converted && defined($highlight)) {
         $result        = "*".$count;
         $source_format    = '<span class="lineDiffCov">';
-        $count_format    = format_count($count, $count_field_width);
+        $count_format    = format_count_label($count, $count_field_width);
     }
     else {
         $result        = $count;
         $source_format    = '<span class="lineCov">';
-        $count_format    = format_count($count, $count_field_width);
+        $count_format    = format_count_label($count, $count_field_width);
     }
     $result .= ":".$source;
 
