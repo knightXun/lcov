@@ -4168,11 +4168,13 @@ sub write_source_line(*$$$$$$)
         $result        = "";
         $source_format    = "";
         $count_format    = " "x$count_field_width;
+        return ();
     }
     elsif ($count == 0) {
         $result        = $count;
         $source_format    = '<span class="lineNoCov">';
         $count_format    = format_count($count, $count_field_width);
+        return ();
     }
     elsif ($converted && defined($highlight)) {
         $result        = "*".$count;
